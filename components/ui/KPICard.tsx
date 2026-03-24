@@ -1,13 +1,14 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
+import { TrendingUp, TrendingDown, Minus, AlertCircle } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
 import type { KPIItem } from "@/lib/kpi-data";
 
-const statusDot: Record<KPIItem["status"], string> = {
-  green:   "bg-emerald-500",
-  yellow:  "bg-chili-yellow",
-  red:     "bg-red-500",
-  neutral: "bg-chili-text-secondary",
+const statusIcon: Record<KPIItem["status"], React.ReactNode> = {
+  green:   <TrendingUp  className="w-3 h-3 text-emerald-500" />,
+  yellow:  <Minus       className="w-3 h-3 text-chili-yellow" />,
+  red:     <TrendingDown className="w-3 h-3 text-red-500" />,
+  neutral: <AlertCircle  className="w-3 h-3 text-chili-text-secondary" />,
 };
 
 export default function KPICard({ item }: { item: KPIItem }) {
@@ -37,7 +38,7 @@ export default function KPICard({ item }: { item: KPIItem }) {
     >
       {/* Status indicator + label */}
       <div className="flex items-center gap-2">
-        <span className={`w-1.5 h-1.5 rounded-full ${statusDot[item.status]}`} />
+        {statusIcon[item.status]}
         <span className="font-mono text-label uppercase tracking-widest text-chili-text-secondary">
           {item.label}
         </span>

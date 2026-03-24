@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { TrendingDown } from "lucide-react";
 
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,7 +20,8 @@ export default function SiteHeader() {
       }`}
     >
       <div className="flex items-center justify-between px-6 lg:px-8 h-14">
-        <span className="font-heading text-sm font-bold tracking-[0.2em] text-chili-yellow uppercase">
+        <span className="flex items-center gap-2 font-heading text-sm font-bold tracking-[0.2em] text-chili-yellow uppercase">
+          <TrendingDown className="w-3.5 h-3.5" />
           CHILI A/S
         </span>
         <span className="font-mono text-xs text-chili-text-secondary tracking-widest uppercase hidden sm:block">

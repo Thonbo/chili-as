@@ -48,9 +48,9 @@ export const kpiData: KPIItem[] = [
 export const transportKPI: KPIItem[] = [
   {
     label: "Scootere erhvervet",
-    value: "6+",
-    numeric: 6,
-    sub: "Konservativt estimat.",
+    value: "5",
+    numeric: 5,
+    sub: "Bekræftet af far. Ikke konservativt.",
     status: "neutral",
   },
   {

@@ -30,7 +30,9 @@ export default function VideoBlock({
     "1/1":  "100%",
   };
 
-  // IntersectionObserver: autoplay when visible, pause when not
+  // For portrait 9:16 videos, cap width so the box doesn't become enormous
+  const isPortrait = ratio === "9/16";
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -45,7 +47,7 @@ export default function VideoBlock({
           setPlaying(false);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     );
 
     if (wrapRef.current) observer.observe(wrapRef.current);
@@ -65,38 +67,65 @@ export default function VideoBlock({
 
   return (
     <div className={className}>
-      <div
-        ref={wrapRef}
-        className="relative w-full overflow-hidden bg-chili-matte cursor-pointer"
-        style={{ paddingTop: paddingMap[ratio] }}
-        onClick={handleTap}
-      >
-        <video
-          ref={videoRef}
-          src={src}
-          poster={poster}
-          loop={loop}
-          muted
-          playsInline
-          preload="none"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Play hint overlay (before first tap on mobile) */}
-        {!playing && !tapped && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-14 h-14 rounded-full bg-chili-black/60 border border-chili-yellow/40 flex items-center justify-center backdrop-blur-sm">
-              <svg className="w-5 h-5 text-chili-yellow ml-1" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+      {/* Portrait: fixed narrow box centred; landscape: full width */}
+      <div className={isPortrait ? "flex justify-center" : "w-full"}>
+        <div
+          ref={wrapRef}
+          className={`relative overflow-hidden bg-chili-matte cursor-pointer ${
+            isPortrait ? "w-[280px] sm:w-[320px] md:w-[360px]" : "w-full"
+          }`}
+          style={{ paddingTop: isPortrait ? undefined : paddingMap[ratio] }}
+          onClick={handleTap}
+        >
+          {/* Portrait uses explicit height via aspect-ratio */}
+          {isPortrait ? (
+            <div className="relative" style={{ aspectRatio: "9/16" }}>
+              <video
+                ref={videoRef}
+                src={src}
+                poster={poster}
+                loop={loop}
+                muted
+                playsInline
+                preload="none"
+                className="w-full h-full object-cover"
+              />
+              {!playing && !tapped && <PlayOverlay />}
             </div>
-          </div>
-        )}
+          ) : (
+            <>
+              <video
+                ref={videoRef}
+                src={src}
+                poster={poster}
+                loop={loop}
+                muted
+                playsInline
+                preload="none"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              {!playing && !tapped && <PlayOverlay />}
+            </>
+          )}
+        </div>
       </div>
       {caption && (
         <p className="mt-3 font-mono text-caption text-chili-text-secondary px-1">
           — {caption}
         </p>
       )}
+    </div>
+  );
+}
+
+function PlayOverlay() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="w-14 h-14 rounded-full bg-chili-black/60 border border-chili-yellow/40 flex items-center justify-center backdrop-blur-sm">
+        <svg className="w-5 h-5 text-chili-yellow ml-1" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </div>
     </div>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
-import HorizontalGallery from "@/components/ui/HorizontalGallery";
+import ScrollGallery from "@/components/ui/ScrollGallery";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import StampBadge from "@/components/ui/StampBadge";
+import MouseFollowBadge from "@/components/ui/MouseFollowBadge";
 
 const ch = chapters[1];
 
@@ -27,47 +27,50 @@ export default function Ch02BliverChili() {
       caption: "Writer. Son. Hornslet.",
       orientation: "portrait" as const,
     },
+    {
+      src: "/images/graffiti/IMG20220808191037.jpg",
+      alt: "Graffiti close-up",
+      caption: "Detaljen tæller.",
+      orientation: "landscape" as const,
+    },
   ];
 
   return (
     <section
       id={ch.id}
-      className="chapter-anchor relative bg-chili-gray pt-section pb-chapter overflow-hidden"
+      className="chapter-anchor relative bg-chili-gray overflow-hidden"
     >
-      <div className="max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] mb-12">
+      {/* Header block — normal scroll */}
+      <div className="pt-section px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pb-10">
         <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} />
 
-        <div className="grid lg:grid-cols-2 gap-10 items-center mb-12">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
           <ScrollReveal>
             <p className="font-body text-body-lg text-chili-text-primary/80 leading-relaxed">
               Nogen vokser op og får et kælenavn. William voksede op og fik et{" "}
               <em>writernavn</em>.
             </p>
             <p className="font-body text-body-lg text-chili-text-primary/80 leading-relaxed mt-5">
-              <span className="text-chili-yellow font-semibold">Chili</span> — kortfattet, presist og umuligt at overse på en væg.
-              Samme egenskaber gælder i virkeligheden.
+              <span className="text-chili-yellow font-semibold">Chili</span> — kortfattet,
+              presist og umuligt at overse på en væg. Samme egenskaber gælder i virkeligheden.
             </p>
           </ScrollReveal>
 
+          {/* Mouse-following stamp badge */}
           <ScrollReveal delay={0.2} className="flex justify-center lg:justify-end">
-            <div className="relative inline-block">
-              <StampBadge
-                text="CHILI"
-                subText="WRITERNAVN · ANDEN GENERATION · HORNSLET"
-                color="yellow"
-                rotation={-6}
-              />
-            </div>
+            <MouseFollowBadge
+              text="CHILI"
+              subText="WRITERNAVN · ANDEN GENERATION · HORNSLET"
+              color="yellow"
+            />
           </ScrollReveal>
         </div>
       </div>
 
-      {/* Horizontal gallery — full width */}
-      <ScrollReveal direction="none">
-        <HorizontalGallery items={galleryItems} />
-      </ScrollReveal>
+      {/* Scroll-driven horizontal gallery */}
+      <ScrollGallery items={galleryItems} heightPerItem={0.65} />
 
-      <div className="max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] mt-12">
+      <div className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pb-chapter">
         <ScrollReveal delay={0.1}>
           <p className="font-mono text-caption text-chili-text-secondary max-w-narrow">
             Stærk branding siden før budgettet kollapsede. Writernavn etableret med
