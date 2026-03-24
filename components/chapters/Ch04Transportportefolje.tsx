@@ -105,7 +105,7 @@ export default function Ch04Transportportefolje() {
       </div>
 
       {/* Scroll-driven gallery — full width */}
-      <ScrollGallery items={galleryItems} heightPerItem={0.7} />
+      <ScrollGallery items={galleryItems} />
 
       {/* Video + budget */}
       <div className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pt-12 pb-chapter space-y-12">

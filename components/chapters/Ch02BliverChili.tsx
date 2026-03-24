@@ -68,7 +68,7 @@ export default function Ch02BliverChili() {
       </div>
 
       {/* Scroll-driven horizontal gallery */}
-      <ScrollGallery items={galleryItems} heightPerItem={0.65} />
+      <ScrollGallery items={galleryItems} />
 
       <div className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pb-chapter">
         <ScrollReveal delay={0.1}>

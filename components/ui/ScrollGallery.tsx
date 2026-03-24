@@ -14,8 +14,6 @@ export interface GalleryItem {
 interface Props {
   items: GalleryItem[];
   className?: string;
-  /** Height multiplier per item (default 0.7 → 70vh per item) */
-  heightPerItem?: number;
 }
 
 const aspectClass: Record<string, string> = {
@@ -30,26 +28,27 @@ const widthVw: Record<string, number> = {
   square:    44,
 };
 
-export default function ScrollGallery({ items, className = "", heightPerItem = 0.7 }: Props) {
+export default function ScrollGallery({ items, className = "" }: Props) {
   const reduced    = useReducedMotion();
   const outer      = useRef<HTMLDivElement>(null);
 
-  // Total sticky scroll distance based on number of items
-  const scrollHeight = `${items.length * heightPerItem * 100}vh`;
-
-  const { scrollYProgress } = useScroll({
-    target: outer,
-    offset: ["start start", "end end"],
-  });
-
-  // Calculate total slide width as sum of item widths + gaps (4px * items)
+  // Calculate total slide width as sum of item widths + gaps
   const totalVw = items.reduce(
     (sum, item) => sum + (widthVw[item.orientation ?? "landscape"] ?? 52),
     0
   ) + (items.length - 1) * 2; // 2vw gaps
 
-  // Translate from 0 to -(totalVw - 100)vw  (stop when last item reaches right edge)
+  // Travel = how many vw the track needs to move (stop when last item reaches right edge)
   const travelVw = Math.max(0, totalVw - 88); // leave 6vw margin each side
+
+  // Outer height = 1 viewport (for the sticky frame) + exactly the travel distance
+  // Using calc so the section ends right when the last slide reaches the edge
+  const scrollHeight = `calc(100vh + ${travelVw}vw)`;
+
+  const { scrollYProgress } = useScroll({
+    target: outer,
+    offset: ["start start", "end end"],
+  });
   const x = useTransform(
     scrollYProgress,
     [0, 1],

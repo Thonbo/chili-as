@@ -35,7 +35,7 @@ export default function Ch09IvanAksen() {
           <div className="space-y-6">
             <ScrollReveal>
               <p className="font-body text-body-lg text-chili-text-primary/80 leading-relaxed">
-                Ivan er Williams morfars far — en mand med ro, tålmodighed og hænder
+                Ivan er Williams pap-morfar — en mand med ro, tålmodighed og hænder
                 der ved hvad de skal bruges til.
               </p>
             </ScrollReveal>
