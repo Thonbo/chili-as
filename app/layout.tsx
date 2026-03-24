@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Syne, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
+
+const FloatingPlayer = dynamic(() => import("@/components/ui/FloatingPlayer"), { ssr: false });
 
 const syne = Syne({
   subsets: ["latin"],
@@ -44,6 +47,7 @@ export default function RootLayout({
     >
       <body className="bg-chili-black text-chili-text-primary font-body antialiased overflow-x-hidden">
         {children}
+        <FloatingPlayer />
       </body>
     </html>
   );
