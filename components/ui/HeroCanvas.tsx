@@ -175,16 +175,31 @@ export default function HeroCanvas() {
         ctx!.fill();
       }
 
-      // Connection lines between close particles
+      // Connection lines — fade in/out based on distance + time pulse
+      const CONNECT_DIST = 100;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const d  = Math.sqrt(dx * dx + dy * dy);
-          if (d < 80) {
-            const alpha = (1 - d / 80) * 0.08;
-            ctx!.strokeStyle = `rgba(255,214,0,${alpha})`;
-            ctx!.lineWidth = 0.5;
+          if (d < CONNECT_DIST) {
+            // Distance fade + individual pulse per pair
+            const distFade = 1 - d / CONNECT_DIST;
+            const pulse = 0.5 + 0.5 * Math.sin(t * 1.2 + (i + j) * 0.4);
+            const alpha = distFade * pulse * 0.12 * Math.min(particles[i].opacity, particles[j].opacity);
+            if (alpha < 0.005) continue;
+
+            // Gradient line: yellow → transparent midpoint → yellow
+            const grd = ctx!.createLinearGradient(
+              particles[i].x, particles[i].y,
+              particles[j].x, particles[j].y
+            );
+            grd.addColorStop(0,   `rgba(255,214,0,${alpha})`);
+            grd.addColorStop(0.5, `rgba(255,180,0,${alpha * 0.5})`);
+            grd.addColorStop(1,   `rgba(255,214,0,${alpha})`);
+
+            ctx!.strokeStyle = grd;
+            ctx!.lineWidth = 0.6 * distFade;
             ctx!.beginPath();
             ctx!.moveTo(particles[i].x, particles[i].y);
             ctx!.lineTo(particles[j].x, particles[j].y);

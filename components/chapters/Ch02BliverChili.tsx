@@ -1,9 +1,10 @@
 "use client";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
-import ScrollGallery from "@/components/ui/ScrollGallery";
+import SlideGallery from "@/components/ui/SlideGallery";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import MouseFollowBadge from "@/components/ui/MouseFollowBadge";
+import { Palette, Tag } from "lucide-react";
 
 const ch = chapters[1];
 
@@ -38,11 +39,11 @@ export default function Ch02BliverChili() {
   return (
     <section
       id={ch.id}
-      className="chapter-anchor relative bg-chili-gray overflow-hidden"
+      className="chapter-anchor relative bg-chili-gray"
     >
       {/* Header block — normal scroll */}
       <div className="pt-section px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pb-10">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} icon={<Palette className="w-5 h-5" />} />
 
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <ScrollReveal>
@@ -68,7 +69,7 @@ export default function Ch02BliverChili() {
       </div>
 
       {/* Scroll-driven horizontal gallery */}
-      <ScrollGallery items={galleryItems} />
+      <SlideGallery items={galleryItems} className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] mb-6" />
 
       <div className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pb-chapter">
         <ScrollReveal delay={0.1}>

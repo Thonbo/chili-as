@@ -1,7 +1,7 @@
 "use client";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
-import ScrollGallery from "@/components/ui/ScrollGallery";
+import SlideGallery from "@/components/ui/SlideGallery";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import VideoBlock from "@/components/ui/VideoBlock";
 
@@ -38,7 +38,7 @@ export default function Ch08HornsletOperations() {
   return (
     <section
       id={ch.id}
-      className="chapter-anchor relative bg-chili-gray overflow-hidden"
+      className="chapter-anchor relative bg-chili-gray"
     >
       {/* Header block */}
       <div className="pt-section px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pb-10">
@@ -56,7 +56,7 @@ export default function Ch08HornsletOperations() {
       </div>
 
       {/* Scroll-driven gallery */}
-      <ScrollGallery items={galleryItems} />
+      <SlideGallery items={galleryItems} className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] mb-6" />
 
       {/* Video + quote */}
       <div className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pt-12 pb-chapter">

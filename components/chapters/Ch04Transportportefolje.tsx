@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
-import ScrollGallery from "@/components/ui/ScrollGallery";
+import SlideGallery from "@/components/ui/SlideGallery";
 import KPICard from "@/components/ui/KPICard";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import VideoBlock from "@/components/ui/VideoBlock";
@@ -15,9 +15,15 @@ const ch = chapters[3];
 export default function Ch04Transportportefolje() {
   const galleryItems = [
     {
-      src: "/images/transport/IMG20220715135852.jpg",
+      src: "/images/transport/VID20240720163354.jpg",
       alt: "Sommer 2022 — scooter-æraen",
       caption: "Sommeren 2022. Peak scooter-optimisme.",
+      orientation: "landscape" as const,
+    },
+    {
+      src: "/images/transport/IMG20220715135852.jpg",
+      alt: "Scooter 2022 — indkørsel",
+      caption: "En af de 5. Nuværende status: ukendt.",
       orientation: "landscape" as const,
     },
     {
@@ -49,7 +55,7 @@ export default function Ch04Transportportefolje() {
   return (
     <section
       id={ch.id}
-      className="chapter-anchor relative bg-chili-black overflow-hidden"
+      className="chapter-anchor relative bg-chili-black"
     >
       {/* Header */}
       <div className="pt-section px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pb-10">
@@ -105,7 +111,7 @@ export default function Ch04Transportportefolje() {
       </div>
 
       {/* Scroll-driven gallery — full width */}
-      <ScrollGallery items={galleryItems} />
+      <SlideGallery items={galleryItems} className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] mb-6" />
 
       {/* Video + budget */}
       <div className="px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)] max-w-editorial mx-auto pt-12 pb-chapter space-y-12">

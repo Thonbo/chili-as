@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { Wrench, Settings } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -20,7 +21,7 @@ export default function Ch05FarensServiceafdeling() {
       className="chapter-anchor relative bg-chili-gray pt-section pb-chapter overflow-hidden"
     >
       <div className="max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)]">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} icon={<Wrench className="w-5 h-5" />} />
 
         {/* Layout: image + sticky notes */}
         <div className="grid lg:grid-cols-5 gap-10 items-start">

@@ -1,13 +1,15 @@
+import type { ReactNode } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 interface Props {
   number: string;
   title: string;
   tagline: string;
-  light?: boolean; // white chapter number for dark sections
+  light?: boolean;
+  icon?: ReactNode;
 }
 
-export default function ChapterIntro({ number, title, tagline, light = false }: Props) {
+export default function ChapterIntro({ number, title, tagline, light = false, icon }: Props) {
   return (
     <div className="mb-16 md:mb-24">
       {/* Chapter number — large ghost text */}
@@ -20,9 +22,14 @@ export default function ChapterIntro({ number, title, tagline, light = false }: 
         </span>
       </ScrollReveal>
 
-      {/* Title + tagline */}
+      {/* Icon + Title + tagline */}
       <ScrollReveal delay={0.1}>
         <div className="-mt-6 md:-mt-10">
+          {icon && (
+            <div className="flex items-center gap-2 mb-3 text-chili-yellow">
+              {icon}
+            </div>
+          )}
           <h2 className="font-heading text-display-md font-extrabold text-chili-text-primary uppercase tracking-tight leading-tight mb-3">
             {title}
           </h2>

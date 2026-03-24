@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { Heart } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -15,7 +16,7 @@ export default function Ch10LillebrorStatus() {
       className="chapter-anchor relative bg-chili-matte pt-section pb-chapter overflow-hidden"
     >
       <div className="max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)]">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} icon={<Heart className="w-5 h-5" />} />
 
         <div className="grid lg:grid-cols-3 gap-10 items-start">
           {/* Image */}

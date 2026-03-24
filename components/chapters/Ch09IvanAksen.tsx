@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { Fish, Anchor } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -14,7 +15,7 @@ export default function Ch09IvanAksen() {
       className="chapter-anchor relative bg-chili-black pt-section pb-chapter overflow-hidden"
     >
       <div className="max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)]">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} light />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} light icon={<Fish className="w-5 h-5" />} />
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image */}

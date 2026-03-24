@@ -1,4 +1,5 @@
 "use client";
+import { CalendarDays, Cake } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ParallaxImage from "@/components/ui/ParallaxImage";
@@ -22,7 +23,7 @@ export default function Ch11_24Marts() {
       <div className="absolute inset-0 bg-gradient-to-b from-chili-black via-transparent to-chili-black" />
 
       <div className="relative z-10 max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)]">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} light />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} light icon={<Cake className="w-5 h-5" />} />
 
         <div className="max-w-narrow space-y-8">
           <ScrollReveal>

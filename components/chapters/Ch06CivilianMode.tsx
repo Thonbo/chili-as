@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { User, Eye } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -37,7 +38,7 @@ export default function Ch06CivilianMode() {
       <div className="absolute inset-0 bg-gradient-to-b from-chili-black via-chili-black/60 to-chili-black" />
 
       <div className="relative z-10 max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)]">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} light />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} light icon={<User className="w-5 h-5" />} />
 
         {/* Portrait grid — 2x2 */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-12">

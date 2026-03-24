@@ -1,4 +1,5 @@
 "use client";
+import { Mail, HeartHandshake } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -23,7 +24,7 @@ export default function Ch12FraDinFar() {
       className="chapter-anchor relative bg-chili-gray pt-section pb-chapter overflow-hidden"
     >
       <div className="max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)]">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} icon={<HeartHandshake className="w-5 h-5" />} />
 
         {/* ElevenLabs video — tribute moment */}
         <ScrollReveal direction="none" className="mb-12">

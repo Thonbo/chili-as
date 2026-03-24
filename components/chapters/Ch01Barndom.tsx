@@ -1,4 +1,5 @@
 "use client";
+import { Baby } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ParallaxImage from "@/components/ui/ParallaxImage";
@@ -32,6 +33,7 @@ export default function Ch01Barndom() {
           title={ch.title}
           tagline={ch.tagline}
           light
+          icon={<Baby className="w-5 h-5" />}
         />
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-end mt-section">

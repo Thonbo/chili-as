@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { Gamepad2, DollarSign, Crosshair } from "lucide-react";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -28,7 +29,7 @@ export default function Ch07CS2Division() {
       </div>
 
       <div className="relative z-10 max-w-editorial mx-auto px-6 lg:px-gutter-lg lg:ml-[var(--nav-width)]">
-        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} />
+        <ChapterIntro number={ch.number} title={ch.title} tagline={ch.tagline} icon={<Gamepad2 className="w-5 h-5" />} />
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
           {/* Portrait */}
@@ -82,12 +83,62 @@ export default function Ch07CS2Division() {
 
         {/* KPI cards */}
         <ScrollReveal direction="none">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-12">
             {cs2KPI.map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <KPICard item={item} />
               </ScrollReveal>
             ))}
+          </div>
+        </ScrollReveal>
+
+        {/* CS2 Skin portefølje */}
+        <ScrollReveal delay={0.15}>
+          <div className="border border-chili-yellow/20 bg-chili-yellow-faint p-5">
+            <div className="flex items-center gap-2 mb-4">
+              <DollarSign className="w-4 h-4 text-chili-yellow" />
+              <span className="font-mono text-label uppercase tracking-widest text-chili-yellow">
+                Skin-portefølje · Flagship asset
+              </span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              {/* Skin image from Steam CDN */}
+              <div className="flex-none w-44 h-44 bg-chili-black/60 border border-chili-gray-mid flex items-center justify-center overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DAQ1JmMR1osbaqPQJz7ODYfi9W9eO0mJWOqOf9PbDummJW4NE_2u3Aooj2i1KwrkNoYW_7dYKXeg9vNVyC_AK-wb_thse9vpmYz3Bn7z5iuy/360fx360f"
+                  alt="CS2 Skin — flagship"
+                  className="w-full h-full object-contain p-2"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Skin details */}
+              <div className="flex-1 space-y-3">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-chili-text-secondary">Estimeret markedsværdi</p>
+                  <p className="font-heading text-3xl font-extrabold text-chili-yellow leading-none">5.000 kr.</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Crosshair className="w-3.5 h-3.5 text-chili-text-secondary" />
+                  <p className="font-mono text-caption text-chili-text-secondary">
+                    CS2 · Skin-inventar · Primær statussymbol
+                  </p>
+                </div>
+                <p className="font-mono text-caption text-chili-text-secondary leading-relaxed">
+                  Hvert eneste skin købt med penge der alternativt kunne have
+                  finansieret transport, mad eller basale fornødenheder.
+                  Prioriteten er klar.
+                </p>
+                <div className="flex items-center gap-1.5 pt-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  <span className="font-mono text-[10px] text-chili-text-secondary uppercase tracking-widest">
+                    Status: aktiv · Ikke til salg
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
       </div>
