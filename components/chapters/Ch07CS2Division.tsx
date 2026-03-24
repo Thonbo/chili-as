@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Gamepad2, DollarSign, Crosshair } from "lucide-react";
+import SteamSkinImage from "@/components/ui/SteamSkinImage";
 import { chapters } from "@/lib/chapters";
 import ChapterIntro from "@/components/ui/ChapterIntro";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -103,16 +104,13 @@ export default function Ch07CS2Division() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-6 items-start">
-              {/* Skin image from Steam CDN */}
-              <div className="flex-none w-44 h-44 bg-chili-black/60 border border-chili-gray-mid flex items-center justify-center overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DAQ1JmMR1osbaqPQJz7ODYfi9W9eO0mJWOqOf9PbDummJW4NE_2u3Aooj2i1KwrkNoYW_7dYKXeg9vNVyC_AK-wb_thse9vpmYz3Bn7z5iuy/360fx360f"
-                  alt="CS2 Skin — flagship"
-                  className="w-full h-full object-contain p-2"
-                  loading="lazy"
-                />
-              </div>
+              {/* Skin image — tries multiple Steam CDN variants, falls back to glove SVG */}
+              <SteamSkinImage
+                hash="-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DAQ1JmMR1osbaqPQJz7ODYfi9W9eO0mJWOqOf9PbDummJW4NE_2u3Aooj2i1KwrkNoYW_7dYKXeg9vNVyC_AK-wb_thse9vpmYz3Bn7z5iuy"
+                alt="CS2 Gloves — flagship skin"
+                skinName="CS2 Gloves · 5.000 kr."
+                className="flex-none w-44 h-44 object-contain p-2 bg-chili-black/60 border border-chili-gray-mid"
+              />
 
               {/* Skin details */}
               <div className="flex-1 space-y-3">
