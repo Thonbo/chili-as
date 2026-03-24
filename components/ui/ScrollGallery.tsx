@@ -41,9 +41,9 @@ export default function ScrollGallery({ items, className = "" }: Props) {
   // Travel = how many vw the track needs to move (stop when last item reaches right edge)
   const travelVw = Math.max(0, totalVw - 88); // leave 6vw margin each side
 
-  // Outer height = 1 viewport (for the sticky frame) + exactly the travel distance
-  // Using calc so the section ends right when the last slide reaches the edge
-  const scrollHeight = `calc(100vh + ${travelVw}vw)`;
+  // Outer height = 1 viewport + a fraction of travel distance.
+  // 0.4 keeps it snappy — less vertical scroll needed to sweep through all slides.
+  const scrollHeight = `calc(100vh + ${Math.round(travelVw * 0.4)}vw)`;
 
   const { scrollYProgress } = useScroll({
     target: outer,
